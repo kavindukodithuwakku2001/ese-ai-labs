@@ -1,0 +1,206 @@
+@import "tailwindcss";
+
+@theme {
+  --color-forest: #006400;
+  --color-forest-light: #00820a;
+  --color-forest-dark: #004d00;
+  --color-forest-glow: #00ff4144;
+  --color-dark-900: #0a0a0a;
+  --color-dark-800: #111111;
+  --color-dark-700: #1a1a1a;
+  --color-dark-600: #222222;
+  --color-dark-500: #2a2a2a;
+  --color-glass: rgba(255, 255, 255, 0.04);
+  --color-glass-border: rgba(255, 255, 255, 0.08);
+  --color-glass-hover: rgba(255, 255, 255, 0.08);
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+/* ===== Base ===== */
+html {
+  scroll-behavior: smooth;
+  background: var(--color-dark-900);
+}
+
+body {
+  font-family: var(--font-sans);
+  color: #e5e5e5;
+  background: var(--color-dark-900);
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--color-forest);
+  color: white;
+}
+
+/* ===== Scrollbar ===== */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-dark-900);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-dark-600);
+  border-radius: 3px;
+}
+
+/* ===== Glass Card ===== */
+.glass {
+  background: var(--color-glass);
+  border: 1px solid var(--color-glass-border);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.glass-hover:hover {
+  background: var(--color-glass-hover);
+  border-color: rgba(0, 100, 0, 0.3);
+  box-shadow: 0 0 30px rgba(0, 100, 0, 0.08);
+}
+
+/* ===== Gradient text ===== */
+.gradient-text {
+  background: linear-gradient(135deg, #ffffff 0%, #00c853 50%, #006400 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ===== Glow line ===== */
+.glow-line {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-forest), transparent);
+  opacity: 0.4;
+}
+
+/* ===== Animated background grid ===== */
+.bg-grid {
+  background-image:
+    linear-gradient(rgba(0, 100, 0, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 100, 0, 0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* ===== Hero glow orb ===== */
+.hero-glow {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0, 100, 0, 0.15) 0%, transparent 70%);
+  filter: blur(80px);
+  pointer-events: none;
+}
+
+/* ===== Fade-in animation ===== */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.6; }
+}
+.animate-pulse-glow {
+  animation: pulse-glow 4s ease-in-out infinite;
+}
+
+/* ===== Section styles ===== */
+section {
+  position: relative;
+}
+
+/* ===== Service card icon container ===== */
+.service-icon {
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(0, 100, 0, 0.2), rgba(0, 100, 0, 0.05));
+  color: #00c853;
+  font-size: 24px;
+}
+
+/* ===== Testimonial card ===== */
+.testimonial-card {
+  position: relative;
+}
+.testimonial-card::before {
+  content: '\201C';
+  position: absolute;
+  top: -10px;
+  left: 20px;
+  font-size: 80px;
+  color: rgba(0, 100, 0, 0.15);
+  font-family: Georgia, serif;
+  line-height: 1;
+}
+
+/* ===== Contact form focus ===== */
+.form-input:focus {
+  border-color: var(--color-forest) !important;
+  box-shadow: 0 0 0 3px rgba(0, 100, 0, 0.15);
+}
+
+/* ===== CTA button ===== */
+.btn-primary {
+  background: linear-gradient(135deg, var(--color-forest) 0%, var(--color-forest-light) 100%);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--color-forest-light) 0%, #00e676 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.btn-primary:hover::before {
+  opacity: 1;
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0, 100, 0, 0.3);
+}
+
+/* ===== Nav link hover ===== */
+.nav-link {
+  position: relative;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--color-forest);
+  transition: width 0.3s ease;
+}
+.nav-link:hover::after {
+  width: 100%;
+}
